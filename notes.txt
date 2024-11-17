@@ -1,0 +1,34 @@
+Whenever you modify your schema (like adding a new table/model, adding or removing a fields/columns, changing relationship), you need to first create/generate a migration and then apply migration to database.
+
+npx prisma migrate dev --name init
+The above command - generates a new migration and apply migration to database.
+It is a combination of two commands:
+1. npx prisma migrate generate --name init
+2. npx prisma migrate apply
+
+-------------------xxx--------------------------------
+
+#Additional Information
+--name init:
+Specifies the name for the migration file. In this case, the migration file will be named init
+
+-------------------xxxx-------------------------------
+
+#Understanding schema
+
+Model Post {
+    author    User     @relation(fields: [authorId], references: [id])
+    authorId  Int
+}
+
+author - is the virtual field which means 'post table' won't have a column name called 'author'. Instead it is used for generating or establishing a relationship b/w 'User table/modle' and 'Post table/modle'
+
+-------------------xxxx--------------------------------
+
+npx prisma studio
+the above command will help you to see your data. It is similar like mongodb compass
+
+------------------xxxxx----------------------------------
+
+tsc -b --> for compilation
+npx tsc src/filename
